@@ -2,7 +2,7 @@ workflows:
   ios-simple-workflow:
     name: iOS Simple Workflow
     environment:
-      xcode: 14.3 # Cambia esto a la versión específica que prefieras o usa "latest"
+      xcode: 14.2 # Cambia esto a la versión específica que prefieras o usa "latest"
     triggering:
       events:
         - push
