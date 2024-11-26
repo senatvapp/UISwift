@@ -2,16 +2,21 @@ workflows:
   ios-simple-workflow:
     name: iOS Simple Workflow
     environment:
-      xcode: 15.0 # Cambia esto a la versión específica que prefieras o usa "latest"
+      xcode: 15.0  # Verifica la versión compatible de Xcode
     triggering:
       events:
         - push
         - pull_request
     scripts:
-      - name: Compilar el Proyecto
+      - name: Instalar dependencias de CocoaPods (si es necesario)
+        script: |
+          if [ -e Podfile ]; then
+            pod install
+          fi
+      - name: Compilar el Proyecto Sin Esquema
         script: |
           xcodebuild -project YourApp.xcodeproj \
-                     -scheme YourAppScheme \
+                     -configuration Release \
                      -sdk iphonesimulator \
                      -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
                      clean build
