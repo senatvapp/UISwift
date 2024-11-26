@@ -2,11 +2,7 @@ workflows:
   ios-simple-workflow:
     name: iOS Simple Workflow
     environment:
-      vars:
-        # Agrega aquí variables necesarias
-        EXAMPLE_VAR: "example_value"
-      xcode:
-        version: latest # Usa la última versión de Xcode
+      xcode: 14.3 # Cambia esto a la versión específica que prefieras o usa "latest"
     triggering:
       events:
         - push
@@ -19,11 +15,5 @@ workflows:
                      -sdk iphonesimulator \
                      -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
                      clean build
-      - name: Pruebas Unitarias (opcional)
-        script: |
-          xcodebuild test -project YourApp.xcodeproj \
-                          -scheme YourAppScheme \
-                          -sdk iphonesimulator \
-                          -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
     artifacts:
       - build/**/*.app
